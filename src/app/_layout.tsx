@@ -1,18 +1,20 @@
+
 import {
   HostGrotesk_400Regular,
   HostGrotesk_500Medium,
   HostGrotesk_600SemiBold,
   HostGrotesk_700Bold,
   useFonts,
-} from "@expo-google-fonts/host-grotesk";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Stack } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { AuthProvider } from "../context/AuthContext";
-import { useAuth } from "../hooks/useAuth";
-import "../styles/global.css";
+} from '@expo-google-fonts/host-grotesk';
+import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useAuth } from '../hooks/useAuth';
+import '../styles/global.css';
+import { AuthProvider } from '../context/AuthContext';
 
 SplashScreen.preventAutoHideAsync();
 
