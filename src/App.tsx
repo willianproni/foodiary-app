@@ -1,5 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 import {
   HostGrotesk_400Regular,
@@ -9,11 +8,12 @@ import {
   useFonts,
 } from "@expo-google-fonts/host-grotesk";
 
-import "./styles/global.css";
-import { useEffect } from "react";
 import * as SplashScreen from "expo-splash-screen";
-import { HomeHeader } from "./components/HomeHeader";
+import { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { DateSwitcher } from "./components/DateSwitcher";
+import { HomeHeader } from "./components/HomeHeader";
+import "./styles/global.css";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -39,6 +39,7 @@ export default function App() {
     <View className="flex-1 bg-white">
       <SafeAreaProvider>
         <HomeHeader />
+        <DateSwitcher/>
       </SafeAreaProvider>
     </View>
   );
