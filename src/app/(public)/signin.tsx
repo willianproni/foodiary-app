@@ -12,10 +12,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
   email: z.email("Informe um e-mail válido"),
-  password: z.string().min(8, "Deve conter pelo menos 8 caracteres"),
+  password: z.string().min(1, "Senha é obrigatória"),
 });
 
-export default function SignIn() {
+export default function Page() {
   const form = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
