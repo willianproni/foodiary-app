@@ -1,13 +1,15 @@
 import { View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Home } from "../../screens/Home";
+import { HomeHeader } from "../../components/HomeHeader";
+import { MealsList } from "../../components/MealsList";
+import { MealBottomBar } from "../../components/MealBottonBar";
 
 export default function Page() {
   return (
     <View className="flex-1 bg-white">
-      <SafeAreaProvider>
-        <Home />
-      </SafeAreaProvider>
+      <HomeHeader />
+      <MealsList />
+
+      <MealBottomBar />
     </View>
   );
 }
