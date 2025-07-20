@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Home } from "../screens/Home";
+import { Home } from "../../screens/Home";
 
 export default function Page() {
   return (
