@@ -1,31 +1,40 @@
-import { router } from "expo-router";
-import { ArrowLeftIcon } from "lucide-react-native";
-import React from "react";
-import { View } from "react-native";
-import { AuthLayout } from "../../components/AuthLayout";
-import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
-import { colors } from "../../styles/colors";
-import z from "zod";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { router } from 'expo-router';
+import { ArrowLeftIcon } from 'lucide-react-native';
+import React from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Alert, View } from 'react-native';
+import z from 'zod';
+
+import { AuthLayout } from '../../components/AuthLayout';
+import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
+import { useAuth } from '../../hooks/useAuth';
+import { colors } from '../../styles/colors';
 
 const schema = z.object({
-  email: z.email("Informe um e-mail válido"),
-  password: z.string().min(1, "Senha é obrigatória"),
+  email: z.email('Informe um e-mail válido'),
+  password: z.string().min(8, 'Deve conter pelo menos 8 caracteres'),
 });
 
-export default function Page() {
+export default function SignIn() {
   const form = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
-  const handleSubmit = form.handleSubmit((formData) => {
-    console.log(JSON.stringify(formData, null, 2));
+  const { signIn } = useAuth();
+
+  const handleSubmit = form.handleSubmit(async (formData) => {
+    try {
+      await signIn(formData);
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Credenciais inválidas!');
+    }
   });
 
   return (
@@ -52,7 +61,7 @@ export default function Page() {
               />
             )}
           />
-
+        
           <Controller
             control={form.control}
             name="password"
@@ -75,7 +84,7 @@ export default function Page() {
           <Button onPress={router.back} size="icon" color="gray">
             <ArrowLeftIcon size={20} color={colors.black[700]} />
           </Button>
-          <Button onPress={handleSubmit} className="flex-1">
+          <Button className="flex-1" onPress={handleSubmit}>
             Entrar
           </Button>
         </View>
